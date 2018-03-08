@@ -37,9 +37,14 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'firstName' => 'required|string|min:3|max:255',
+            'lastName' => 'required|string|min:3|max:255',
+        ]);
+
         $student = new Student([
-            'firstName' => $request->firstName,
-            'lastName' => $request->lastName
+            'firstName' => $validatedData->firstName,
+            'lastName' => $validatedData->lastName
         ]);
 
         $student->save();
@@ -77,8 +82,13 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        $student -> firstName = $request -> firstName;
-        $student -> lastName = $request -> lastName;
+        $validatedData = $request->validate([
+            'firstName' => 'required|string|min:3|max:255',
+            'lastName' => 'required|string|min:3|max:255',
+        ]);
+
+        $student -> firstName = $validatedData -> firstName;
+        $student -> lastName = $validatedData -> lastName;
         $student -> save();
         return redirect('student');
     }
@@ -101,6 +111,10 @@ class StudentController extends Controller
     }
 
     public function assignCourse(Request $request, Student $student){
+        $request->validate([
+            'course_id' => 'required|numeric',
+        ]);
+
         if($request->course_id >= 0) {
             $student->course_id = $request->course_id;
         }else{

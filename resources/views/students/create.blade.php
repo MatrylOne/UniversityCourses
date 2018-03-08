@@ -12,7 +12,7 @@
             <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Wpisz imię">
         </div>
         <div class="form-group">
-            <label for="lastName">Opis</label>
+            <label for="lastName">Nazwisko</label>
             <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Wpisz nazwisko">
         </div>
         <button type="submit" class="btn btn-primary">Stwórz</button>
